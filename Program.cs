@@ -10,51 +10,63 @@ namespace homeWorkElevenConsoleMenu
     {
         static void Main(string[] args)
         {
-            int menuItem = 0;
+            string menuItem;
+            bool canExit = true;
+            Random random = new Random();
 
-            while (menuItem != 5)
+            const string CommandShowName = "1";
+            const string CommandShowAge = "2";
+            const string CommandShowNumber = "3";
+            const string CommandClearCosole = "4";
+            const string CommandExit = "5";
+
+            while (canExit)
             {
-            Console.WriteLine($"1.Узнать свое имя.\n" +
-                $"2.Узнать свой возраст.\n3.Получить случайное число.\n" +
-                $"4.Очистить консолью\n5.Выйти из программы.");
+            Console.WriteLine($"{CommandShowName}.Узнать свое имя.\n" +
+                $"{CommandShowAge}.Узнать свой возраст.\n{CommandShowNumber}.Получить случайное число.\n" +
+                $"{CommandClearCosole}.Очистить консолью\n{CommandExit}.Выйти из программы.\n");
             
             Console.Write("Выберите пункт меню: ");
-            menuItem = Convert.ToInt32(Console.ReadLine());
+            menuItem = Console.ReadLine();
 
                 switch (menuItem)
                 {
-                    case 1:
+                    case CommandShowName:
                         string name;
-                        Console.Write("1.Введите ваше имя: ");
+                        Console.Write("Введите ваше имя: ");
                         name = Console.ReadLine();
-                        Console.WriteLine("Вас зовут " + name + ".");
+                        Console.WriteLine("Вас зовут " + name + ".\n");
                         break;
-                    case 2:
+
+                    case CommandShowAge:
                         int age;
                         Console.Write("Введите ваш возрвст: ");
                         age = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Вам " + age + " лет.");
+                        Console.WriteLine("Вам " + age + " лет.\n");
                         break;
-                    case 3:
-                        int rangeMin, rangeMax;
-                        Console.Write("Введите желаемый дипозон показываемого числа: ");
-                        rangeMin = Convert.ToInt32(Console.ReadLine());
-                        rangeMax = Convert.ToInt32(Console.ReadLine());
-                        Random random = new Random();
-                        int number = random.Next(rangeMin, rangeMax);
-                        Console.WriteLine("Ваше число: " + number + ".");
-                        break;
-                    case 4:
-                        Console.Clear();
-                        Console.WriteLine("Консоль очищена!");
-                        break;
-                    case 5:
-                        Console.WriteLine("В с е г о хо ро ше го ");
-                        break;
-                    default:
-                        Console.WriteLine("Неверный выбор попробуй еще раз!");
-                        break ;
 
+                    case CommandShowNumber:
+                        int rangeMin, rangeMax;
+                        Console.Write("Введите желаемый диапазон показываемого числа: ");
+                        rangeMin = Convert.ToInt32(Console.ReadLine());
+                        rangeMax = Convert.ToInt32(Console.ReadLine()); 
+                        int number = random.Next(rangeMin, rangeMax);
+                        Console.WriteLine("Ваше число: " + number + ".\n");
+                        break;
+
+                    case CommandClearCosole:
+                        Console.Clear();
+                        Console.WriteLine("Консоль очищена!\n");
+                        break;
+
+                    case CommandExit:
+                        canExit = false;
+                        Console.WriteLine("В с е г о хо ро ше го \n");
+                        break;
+
+                    default:
+                        Console.WriteLine("Неверный выбор попробуй еще раз!\n");
+                        break ;
                 }
             }
         }
